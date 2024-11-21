@@ -141,10 +141,13 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-         ConnectionBD conexion = new ConnectionBD();
+protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+    
+
+    request.setCharacterEncoding("UTF-8");
+
+    ConnectionBD conexion = new ConnectionBD();
     
     String nombre = request.getParameter("nombre");
     String curp = request.getParameter("curp");
@@ -166,7 +169,6 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
 
         int filasInsertadas = ps.executeUpdate();
         if (filasInsertadas > 0) {
-            
             response.sendRedirect(request.getContextPath() + "/usuario");
         } else {
             System.out.println("Ocurrió un error al insertar el usuario.");
@@ -188,9 +190,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
             e.printStackTrace();
         }
     }
-       
-       
-       
+   
     }
 
     /**

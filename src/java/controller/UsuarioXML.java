@@ -17,7 +17,7 @@ public class UsuarioXML extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String idStr = request.getParameter("id");
-        String format = request.getParameter("format"); // Nuevo parámetro
+        String format = request.getParameter("format"); 
         ConnectionBD conexion = new ConnectionBD();
 
         try ( Connection conn = conexion.getConnectionBD()) {
@@ -38,7 +38,7 @@ public class UsuarioXML extends HttpServlet {
                                 usuario.setApodo(rs.getString("apodo"));
                                 usuario.setEdad(rs.getInt("edad"));
 
-                                // Si el formato solicitado es XML, enviamos la respuesta en XML
+                                
                                 if ("xml".equalsIgnoreCase(format)) {
                                     response.setContentType("application/xml");
                                     response.setCharacterEncoding("UTF-8");
@@ -55,7 +55,7 @@ public class UsuarioXML extends HttpServlet {
                                             + "</Usuario>"
                                     );
                                 } else {
-                                    // Si no es XML, redirigir a otra vista
+                                    
                                     request.setAttribute("usuario", usuario);
                                     request.getRequestDispatcher("/views/bin.jsp").forward(request, response);
                                 }
